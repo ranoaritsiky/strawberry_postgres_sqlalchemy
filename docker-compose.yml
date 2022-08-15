@@ -1,0 +1,36 @@
+version: '3'
+services:
+  db:
+    image: postgres:14
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres     
+      - POSTGRES_DB=hairun
+
+    restart: always             # run as a service
+    volumes:
+        - ./postgresql:/var/lib/postgresql/data
+    networks:
+      - hr-net
+    ports:
+      - "5432:5432"
+    
+
+  app:
+    user: root
+    build: .
+    ports:
+      - "8001:8001"
+    restart: always
+    networks:
+      - hr-net
+    depends_on:
+      - db
+    links:
+      - db
+    volumes:
+      - .:/hafo
+
+networks:
+  hr-net:
+    driver: bridge
