@@ -7,7 +7,7 @@ WORKDIR /hafo
 # 
 COPY ./requirements.txt /hafo/requirements.txt
 
-# RUN  pip install --upgrade pip
+RUN  pip install --upgrade pip
 # 
 RUN pip install --no-cache-dir --upgrade -r /hafo/requirements.txt
 

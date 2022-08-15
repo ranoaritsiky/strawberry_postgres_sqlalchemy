@@ -21,7 +21,7 @@ services:
     build: .
     ports:
       - "8001:8001"
-    restart: always
+    restart: on-failure
     networks:
       - hr-net
     depends_on:
@@ -30,6 +30,8 @@ services:
       - db
     volumes:
       - .:/hafo
+    
+
 
 networks:
   hr-net:
